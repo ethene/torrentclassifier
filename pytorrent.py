@@ -17,8 +17,8 @@ ses = lt.session()
 ses.start_dht()
 
 def err(er):
-	print er.args      # arguments stored in .args
-	print er
+	print (er.args)      # arguments stored in .args
+	print (er)
 	return 1
 
 def getMetadata():
@@ -46,9 +46,9 @@ def start_download():
 	while (handle.status().state != lt.torrent_status.seeding):
 		call('clear',shell=True)
 		s = handle.status()
-		print '%.2f%% complete (down: %.1f kb/s up: %.1f kB/s peers: %d) %s %.3f' % \
+		print ('%.2f%% complete (down: %.1f kb/s up: %.1f kB/s peers: %d) %s %.3f' % \
 	                (s.progress * 100, s.download_rate / 1000, s.upload_rate / 1000, \
-	                s.num_peers, state_str[s.state], s.total_download/1000000)
+	                s.num_peers, state_str[s.state], s.total_download/1000000))
 		print ('pieces:')
 		print (bitmap(s.pieces))
 		info=''
@@ -62,7 +62,7 @@ def start_download():
 		time.sleep(5)
 try:
 	if ".magnet" in filename:
-		print "processing magnet link..." 
+		print ("processing magnet link...")
 	
 		fo = open(filename, "r+")
 		magneturi = fo.read();
